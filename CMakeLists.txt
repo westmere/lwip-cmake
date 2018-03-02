@@ -191,6 +191,11 @@ set(LWIPAPPFILES ${SNMPFILES}
 
 include_directories(${LWIPDIR}/include)
 
+set(lwip_app_static_target "lwip-app-static")
+set(lwip_noapp_static_target "lwip-noapp-static")
+set(lwip_app_object_target "lwip-app-object")
+set(lwip_noapp_object_target "lwip-noapp-object")
+
 if(USE_STATIC_LWIP_LIBRARY)
     add_library(${lwip_app_static_target} STATIC ${LWIPAPPFILES})
     set_target_properties(${lwip_app_static_target} PROPERTIES OUTPUT_NAME lwip-app-static)
