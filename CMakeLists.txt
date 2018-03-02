@@ -191,23 +191,23 @@ set(LWIPAPPFILES ${SNMPFILES}
 
 include_directories(${LWIPDIR}/include)
 
+set(lwip_core_static_target "lwip-core-static")
 set(lwip_app_static_target "lwip-app-static")
-set(lwip_noapp_static_target "lwip-noapp-static")
+set(lwip_core_object_target "lwip-core-object")
 set(lwip_app_object_target "lwip-app-object")
-set(lwip_noapp_object_target "lwip-noapp-object")
 
 if(USE_STATIC_LWIP_LIBRARY)
+    add_library(${lwip_core_static_target} STATIC ${LWIPNOAPPSFILES})
+    set_target_properties(${lwip_core_static_target} PROPERTIES OUTPUT_NAME lwip-core-static)
+
     add_library(${lwip_app_static_target} STATIC ${LWIPAPPFILES})
     set_target_properties(${lwip_app_static_target} PROPERTIES OUTPUT_NAME lwip-app-static)
-
-    add_library(${lwip_noapp_static_target} STATIC ${LWIPNOAPPSFILES})
-    set_target_properties(${lwip_noapp_static_target} PROPERTIES OUTPUT_NAME lwip-noapp-static)
 endif(USE_STATIC_LWIP_LIBRARY)
 
 if(USE_OBJECT_LWIP_LIBRARY)
+    add_library(${lwip_core_object_target} OBJECT ${LWIPNOAPPSFILES})
+    set_target_properties(${lwip_core_object_target} PROPERTIES OUTPUT_NAME lwip-core-object)
+
     add_library(${lwip_app_object_target} OBJECT ${LWIPAPPFILES})
     set_target_properties(${lwip_app_object_target} PROPERTIES OUTPUT_NAME lwip-app-object)
-
-    add_library(${lwip_noapp_object_target} OBJECT ${LWIPNOAPPSFILES})
-    set_target_properties(${lwip_noapp_object_target} PROPERTIES OUTPUT_NAME lwip-noapp-object)
 endif(USE_OBJECT_LWIP_LIBRARY)
